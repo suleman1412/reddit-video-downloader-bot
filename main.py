@@ -1,19 +1,23 @@
 import requests,os,configparser,praw,sys,json
 from reddit_video_downloader.apivideo_ import upload_video
 
-"""To download video from a reddit when called in the comments.
+"""
+To download video from a reddit when called in the comments.
 1. Bot is called when username comments SUMMONING_WORDS in a particular subreddit.
 2. Download the audio and video from .json files.          
 3. Upload the output.mp4 to a streaming platform like api.video        
 4. Post the link of the uploaded file as a comment under the submission            
 5. Delete the video.mp4, audio.mp3 and output.mp4 files from the system
-6. Make the code readable and OOP conscious once you're done with it.
 """
 
 SUMMONING_WORDS = "!save_video"
 def download_video(url):
-    """"Gets the permalink from the main() and  downloads the audio and video.
-    Then combines them using ffmpeg."""
+    
+    """"
+    Gets the permalink from the main() and  downloads the audio and video.
+    Then combines them using ffmpeg.
+    """
+    
     url_json = url + '.json'
     r = requests.get(url_json, headers= {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0"})
     data = r.json()[0]
@@ -32,18 +36,24 @@ def download_video(url):
 
     except Exception as e:
             print("Could not download video.", e)
+            
 def delete_files():
+    
     """delete file after uploading them on a platform"""
+    
     parent_path = "S:\PythonProgs\sadagg\\reddit_video_downloader"
     paths = [parent_path + x for x in ["\\video.mp4","\\audio.mp3","\\output.mp4"]]
     for path in paths:
         os.remove(path)
 def main():
+    
     """
     fetches the information from auth.ini and creates a reddit instance.
      It then checks if the SUMMONING_WORDS were used in the streaming comments
      and also checks whether the submission is a reddit hosted video.
-     If the criteria satisfies, it sends the url to download_video()"""
+     If the criteria satisfies, it sends the url to download_video()
+     """
+    
     config = configparser.ConfigParser()
     config.read('auth.ini')
     r = praw.Reddit(
