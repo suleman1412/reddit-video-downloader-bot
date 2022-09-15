@@ -1,9 +1,19 @@
 # reddit-video-downloader-bot
-A reddit bot that, when called, downloads the video and replies a link to the video for the user to download.
+A reddit bot that downloads the video and gives the user a link to access the download.
 
-## Packages required.
-1. PRAW
->pip install praw
+# Features
 
-2. api.video
->pip install api.video
+- Downloads locally hosted videos with audio
+- Requires `requests` and `FFmpeg` 
+
+# Packages Used
+This uses the following packages:
+
+- PRAW
+- api.video
+- requests
+- configparser
+
+These can be installed individually using the command:
+
+```pip install *package_name* ```
